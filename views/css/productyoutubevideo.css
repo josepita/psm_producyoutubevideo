@@ -1,0 +1,897 @@
+/**
+ * 2023 YourCompany
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * @author    YourName <your.email@example.com>
+ * @copyright 2023 YourCompany
+ * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/* ======================================
+   MAIN GALLERY STYLES
+   ====================================== */
+
+/* Mejorar soporte de swipe para la galería */
+.fancybox-slide--image.fancybox-slide--zooming {
+    touch-action: none !important;
+}
+
+/* Hacer que la galería esté siempre visible */
+.fancybox-container.fancybox-show-thumbs {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Mejorar la transición entre imágenes */
+.fancybox-slide--image .fancybox-image {
+    transition: all 0.2s ease-in-out !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    object-fit: contain !important;
+}
+
+/* Estilo para zoom de imagen en modal */
+.fancybox-slide--image.fancybox-slide--zooming {
+    cursor: zoom-out !important;
+}
+
+/* Ajustar el tamaño de las imágenes en la modal */
+.fancybox-slide--image .fancybox-image {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: auto !important;
+    width: auto !important;
+    margin: auto !important;
+    object-fit: contain !important;
+}
+
+/* Mejorar el aspecto de los controles superiores */
+.fancybox-toolbar {
+    background: rgba(0, 0, 0, 0.3) !important;
+    opacity: 1 !important;
+    border-radius: 0 0 5px 5px !important;
+    padding: 5px !important;
+}
+
+.fancybox-button {
+    color: #fff !important;
+    background: transparent !important;
+}
+
+.fancybox-button:hover {
+    color: #2fb5d2 !important;
+}
+
+/* Estilos para FancyBox */
+.custom-product-gallery-fancybox .fancybox-thumbs {
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+.custom-product-gallery-fancybox .fancybox-thumbs__list a::before {
+    border-color: #2fb5d2;
+}
+
+.custom-product-gallery-fancybox .fancybox-thumbs__list a.fancybox-thumbs-active::before {
+    border-color: #2fb5d2;
+}
+
+.custom-product-gallery-fancybox .fancybox-button {
+    background: rgba(30, 30, 30, 0.6);
+}
+
+.custom-product-gallery-fancybox .fancybox-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos para la galería de productos con video */
+.product-custom-gallery {
+    margin-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estructura principal de la galería */
+.product-custom-gallery .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    width: 100%;
+}
+
+.custom-gallery-main-col,
+.custom-gallery-thumbs-col {
+    padding: 0;
+}
+
+/* Galería principal */
+.custom-gallery-main {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #f6f6f6;
+    height: 100%;
+}
+
+.gallery-slide-item {
+    display: none;
+    width: 100%;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    height: auto;
+    overflow: hidden;
+}
+
+.gallery-slide-item.active {
+    display: block;
+}
+
+.gallery-slide-item img.gallery-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Enlaces para imágenes */
+.product-image-link {
+    display: block;
+    cursor: zoom-in;
+}
+
+/* Estilo para miniaturas (vertical a la izquierda) */
+.custom-gallery-thumbs {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 10px;  /* Espacio entre miniaturas */
+    padding-right: 15px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Ocultar scrollbar para Chrome, Safari y Opera */
+.custom-gallery-thumbs::-webkit-scrollbar {
+    display: none;
+}
+
+.thumb-item {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 2px;
+    border: 1px solid #e9e9e9;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    margin-bottom: 10px;
+}
+
+.thumb-item.active {
+    border-color: #2fb5d2;
+}
+
+.thumb-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.thumb-item:hover {
+    border-color: #2fb5d2;
+}
+
+/* Estilos para miniatura de video */
+.thumb-item.video-thumb {
+    position: relative;
+}
+
+.video-thumb-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-icon i {
+    font-size: 18px;
+}
+
+/* Estilo para el contenedor de video */
+.gallery-slide-item.video-slide {
+    background-color: #fff;
+    display: none;
+}
+
+.gallery-slide-item.video-slide.active {
+    display: block;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Overlay del video */
+.custom-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.custom-video-overlay.hidden {
+    display: none;
+}
+
+.custom-play-button {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.custom-play-button i {
+    font-size: 32px;
+    color: #fff;
+}
+
+.custom-video-overlay:hover .custom-play-button {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Enlace para abrir video en FancyBox */
+.video-fancybox-link {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    z-index: 3;
+    text-decoration: none;
+}
+
+.video-overlay-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.video-overlay-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Controles de navegación - Nuevo estilo similar a imagen 2 */
+.custom-gallery-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.custom-gallery-main:hover .custom-gallery-controls {
+    opacity: 1;
+}
+
+.custom-gallery-prev,
+.custom-gallery-next {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+    pointer-events: auto;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 0 10px;
+}
+
+.custom-gallery-prev {
+    margin-left: 15px;
+}
+
+.custom-gallery-next {
+    margin-right: 15px;
+}
+
+.custom-gallery-prev:hover,
+.custom-gallery-next:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.custom-gallery-prev i,
+.custom-gallery-next i {
+    font-size: 20px;
+}
+
+/* Asegurar que los controles estén siempre visibles en el slide de video */
+.gallery-slide-item.video-slide.active ~ .custom-gallery-controls,
+.gallery-slide-item.video-slide.active + .custom-gallery-controls {
+    opacity: 1;
+}
+
+/* Ícono de material */
+.material-icon-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 5;
+}
+
+.ico-material {
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.ico-material img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Estilos de FancyBox personalizados */
+.fancybox-button--thumbs {
+    display: inline-block !important;
+}
+
+.fancybox-thumbs {
+    background: #fff !important;
+}
+
+.fancybox-thumbs__list a:before {
+    border-color: #2fb5d2 !important;
+}
+
+/* Asegurar que la capa de ampliación ocupe todo el espacio */
+.fancybox-container {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 9999999 !important;
+}
+
+.fancybox-content {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* Configuración para FancyBox para mostrar miniaturas a la izquierda */
+.fancybox-thumbs {
+    top: 0 !important;
+    width: 170px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border-right: 1px solid #ddd !important;
+}
+
+.fancybox-show-thumbs .fancybox-inner {
+    right: 0 !important;
+    left: 170px !important;
+}
+
+/* Estilos para botones de navegación en FancyBox */
+.fancybox-button.fancybox-button--arrow_left,
+.fancybox-button.fancybox-button--arrow_right {
+    background: rgba(255, 255, 255, 0.8) !important;
+    color: #000 !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0 15px !important;
+    z-index: 99999 !important;
+    transform: translateY(-50%) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.fancybox-button.fancybox-button--arrow_left:hover,
+.fancybox-button.fancybox-button--arrow_right:hover {
+    background: #fff !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* ======================================
+   VIDEO HIGHLIGHT STYLES
+   ====================================== */
+
+/* Estilos para hacer que la miniatura del vídeo destaque */
+.thumb-container.video-thumb,
+.thumb-container.js-video-thumb {
+    position: relative !important;
+    border: 2px solid #ff5555 !important; /* Borde rojo para destacar */
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    transform-origin: center !important;
+    animation: pulse-border 2s infinite !important;
+}
+
+@keyframes pulse-border {
+    0% {
+        border-color: #ff5555;
+    }
+    50% {
+        border-color: #ff0000;
+    }
+    100% {
+        border-color: #ff5555;
+    }
+}
+
+.thumb-container.video-thumb:hover,
+.thumb-container.js-video-thumb:hover {
+    transform: scale(1.05) !important;
+    border-color: #ff0000 !important;
+    z-index: 10 !important;
+}
+
+.video-play-icon {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background-color: rgba(255, 0, 0, 0.7) !important;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.thumb-container:hover .video-play-icon {
+    background-color: rgba(255, 0, 0, 0.9) !important;
+    transform: translate(-50%, -50%) scale(1.2) !important;
+}
+
+.video-play-icon i {
+    color: white !important;
+    font-size: 20px !important;
+}
+
+/* Arreglar miniatura de vídeo en diferentes temas */
+#product-thumbs .thumb-container.video-thumb,
+.product-images .thumb-container.video-thumb,
+.images-container .thumb-container.video-thumb {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Hack para asegurar que el padre tiene posición relativa */
+#product-thumbs, 
+.product-images, 
+.images-container, 
+.product-container, 
+.thumb-gallery,
+.js-thumb-container,
+.thumb-container {
+    position: relative !important;
+}
+
+/* Forzar visibilidad en cualquier tema */
+.video-thumb, 
+.js-video-thumb, 
+.thumb-container.video-thumb, 
+.thumb-container.js-video-thumb {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ======================================
+   MOBILE RESPONSIVE STYLES
+   ====================================== */
+
+/* Estilos responsivos generales */
+@media (max-width: 767px) {
+    .product-custom-gallery .row {
+        flex-direction: column-reverse;
+        width: 100%;
+        margin: 0;
+    }
+    
+    .custom-gallery-thumbs-col {
+        margin-top: 10px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .custom-gallery-main-col {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .custom-gallery-thumbs {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-height: none;
+        padding-right: 0;
+        padding-bottom: 10px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .thumb-item {
+        width: 70px;
+        height: 70px;
+        margin-right: 10px;
+        margin-bottom: 0;
+        flex: 0 0 70px;
+    }
+    
+    .custom-gallery-prev,
+    .custom-gallery-next {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .custom-gallery-prev i,
+    .custom-gallery-next i {
+        font-size: 18px;
+    }
+    
+    .custom-play-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .custom-play-button i {
+        font-size: 24px;
+    }
+    
+    .ico-material {
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Galería principal en móvil */
+    .custom-gallery-main {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .gallery-slide-item {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+    
+    /* Ajustes de FancyBox en móvil */
+    .fancybox-thumbs {
+        width: 100% !important;
+        left: 0 !important;
+        top: auto !important;
+        bottom: 0 !important;
+        height: 95px !important;
+        padding: 10px 0 !important;
+        box-sizing: border-box !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-top: 1px solid #ddd !important;
+        border-right: none !important;
+    }
+    
+    .fancybox-show-thumbs .fancybox-inner {
+        right: 0 !important;
+        left: 0 !important;
+        bottom: 95px !important;
+    }
+    
+    /* Mejorar soporte para swipe en móvil */
+    .fancybox-slide {
+        padding: 0 !important;
+        touch-action: pan-y !important;
+    }
+    
+    .fancybox-slide--image .fancybox-content {
+        height: calc(100% - 95px) !important;
+        max-height: calc(100% - 95px) !important;
+    }
+    
+    /* Hacer que los botones de navegación sean más táctiles en móvil */
+    .fancybox-button.fancybox-button--arrow_left,
+    .fancybox-button.fancybox-button--arrow_right {
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 5px !important;
+    }
+    
+    /* Arreglos para el layout de la galería en móvil */
+    .col-md-2, .col-md-10 {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+        padding: 0;
+    }
+    
+    .custom-gallery-slider {
+        width: 100%;
+    }
+    
+    /* Correcciones específicas para visualización en móviles */
+    .product-mobile-gallery {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .product-mobile-gallery .row {
+        display: flex !important;
+        flex-direction: column-reverse !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .product-mobile-gallery .col-md-2,
+    .product-mobile-gallery .col-md-10 {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Correcciones para la galería principal */
+    .product-mobile-gallery .custom-gallery-main-col {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .product-mobile-gallery .custom-gallery-main {
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    .product-mobile-gallery .custom-gallery-slider {
+        width: 100% !important;
+    }
+    
+    /* Correcciones para el contenedor de miniaturas */
+    .product-mobile-gallery .custom-gallery-thumbs-col {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin-top: 10px !important;
+    }
+    
+    .product-mobile-gallery .custom-gallery-thumbs {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        width: 100% !important;
+        padding: 0 0 10px 0 !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important; /* Firefox */
+    }
+    
+    .product-mobile-gallery .custom-gallery-thumbs::-webkit-scrollbar {
+        display: none !important; /* Chrome, Safari, Edge */
+    }
+    
+    /* Correcciones para las miniaturas */
+    .product-mobile-gallery .thumb-item {
+        flex: 0 0 70px !important;
+        width: 70px !important;
+        height: 70px !important;
+        margin-right: 10px !important;
+        margin-bottom: 0 !important;
+        display: inline-block !important;
+    }
+    
+    .product-mobile-gallery .thumb-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    /* Correcciones para el slide de imágenes */
+    .product-mobile-gallery .gallery-slide-item {
+        width: 100% !important;
+        height: 0 !important;
+        padding-bottom: 100% !important; /* Proporción 1:1 */
+        position: relative !important;
+    }
+    
+    .product-mobile-gallery .gallery-slide-item img.gallery-image {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+    
+    /* Correcciones para controles de navegación */
+    .product-mobile-gallery .custom-gallery-controls {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        pointer-events: none !important;
+    }
+    
+    .product-mobile-gallery .custom-gallery-prev,
+    .product-mobile-gallery .custom-gallery-next {
+        pointer-events: auto !important;
+        width: 36px !important;
+        height: 36px !important;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Corregir visualización del video */
+    .product-mobile-gallery .video-slide {
+        width: 100% !important;
+        height: 0 !important;
+        padding-bottom: 100% !important;
+        position: relative !important;
+    }
+    
+    .product-mobile-gallery .video-container {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Eliminar borders rojos que pueden haberse quedado */
+    .product-mobile-gallery * {
+        border-color: transparent !important;
+    }
+}
+
+/* ======================================
+   ADMIN STYLES
+   ====================================== */
+
+/* Estilos para el panel de administración */
+.youtube-video-field label {
+    font-weight: bold;
+}
+
+.youtube-video-field input {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.youtube-video-field .help-block {
+    margin-top: 5px;
+    font-style: italic;
+    color: #777;
+}
+
+.youtube-module-diagnostic {
+    margin-top: 20px;
+}
+
+.youtube-module-diagnostic .panel {
+    margin-bottom: 20px;
+}
+
+.youtube-module-diagnostic .panel-heading {
+    font-weight: bold;
+}
+
+.youtube-module-diagnostic .table {
+    margin-bottom: 0;
+}
+
+.youtube-module-diagnostic .badge-success {
+    background-color: #5cb85c;
+}
+
+.youtube-module-diagnostic .badge-danger {
+    background-color: #d9534f;
+}
